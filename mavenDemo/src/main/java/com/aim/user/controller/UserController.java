@@ -26,7 +26,7 @@ public class UserController {
         System.out.println("1111111");
         int flag = userService.addUser(user);
         if(flag != 0){
-            System.out.println("添加成功！");
+            System.out.println("添加成功！FROM IDEA");
             return "login";
         }else {
             return "error";
