@@ -14,7 +14,7 @@ public class UserController {
 
     @RequestMapping("/selectUserById")
     public String selectUserById(int id, Model model){
-        System.out.println("执行了controller");
+        System.out.println("执行了controller FROM GITHUB");
         User user = userService.selectUserById(id);
         model.addAttribute("user" ,user);
         return "user";
