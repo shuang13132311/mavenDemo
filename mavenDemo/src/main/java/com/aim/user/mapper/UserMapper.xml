@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.aim.user.mapper.UserMapper">
+
+    <resultMap type="com.aim.entity.User" id="userMap">
+        <id property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userSex" column="user_sec"/>
+        <result property="userPhone" column="user_phone"/>
+    </resultMap>
+
+    <!-- 驼峰命名属性会导致mybatis无法匹配数据库字段，因而通过resultType查询到的都为null
+        解决办法：1.使用resultMap将POJO类属性与数据库字段匹配起来
+                2.mybatis开启驼峰映射
+     -->
+
+
+    <!-- 查询单个user   -->
+    <select id="selectUserById" parameterType="int" resultMap="userMap">
+ 		select * from t_user where user_id = #{id}
+ 	</select>
+
+
+    <!-- 添加user -->
+    <insert id="addUser" parameterType="com.aim.entity.User">
+        /*获取序列--自增唯一主键(userId)*/
+        <selectKey keyProperty="userId" order="BEFORE" resultType="int" >
+            select seq_t_user.nextval from dual
+        </selectKey>
+        insert into
+            t_user
+        values(
+            #{userId,jdbcType=INTEGER},
+            #{userName,jdbcType=VARCHAR},
+            #{userPassword,jdbcType=VARCHAR},
+            #{userSex,jdbcType=VARCHAR},
+            #{userPhone,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- user Login -->
+    <select id="login" parameterType="String" resultMap="userMap">
+        select
+            *
+        from
+            t_user
+        where
+            user_name = #{userName}
+        and
+            user_password = #{userPassword}
+
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAllUser" resultMap="userMap">
+        select * from t_user
+    </select>
+
+
+    <!-- 修改user -->
+
+    <!-- 删除user -->
+</mapper>
+
