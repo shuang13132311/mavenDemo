@@ -24,6 +24,7 @@ public class UserController {
     @RequestMapping("/register")
     public String register(User user){
         System.out.println("1111111");
+        System.out.println(user);
         int flag = userService.addUser(user);
         if(flag != 0){
             System.out.println("添加成功！FROM IDEA");

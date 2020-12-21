@@ -6,9 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-
 <!-- 引入jQuery  -->
-
 <script src="/js/jquery.min.js"></script>
 <script>
 	//JQuery加载
@@ -27,6 +25,16 @@
 						alert("111");
 					},"json"	//result的数据类型
 			)
+
+			/*$.ajax({
+				type : "post",
+				url : "/register",
+				Data : formData,
+				DataType : 'json',
+				success : function (result){
+					alert("ajax提交成功")
+				}
+			})*/
 
 		})
 	})
